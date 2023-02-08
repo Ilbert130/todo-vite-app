@@ -1,4 +1,4 @@
-import html from './html?raw';  //importando html
+import html from './app.html?raw';  //importando html
 
 
 /**
