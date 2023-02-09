@@ -1,7 +1,7 @@
 import { Todo } from "../todos/models/todo.model";
 
 //Enumeracion
-const Filter = {
+const Filters = {
     All: 'all',
     Completed: 'Completed',
     Pending: 'Pending'
@@ -11,9 +11,11 @@ const state = {
     todos: [
         new Todo('Piedra del alma'),
         new Todo('Piedra del infinito'),
-        new Todo('Piedra del tiempo')
+        new Todo('Piedra del tiempo'),
+        new Todo('Piedar del poder'),
+        new Todo('Piedar del realidad')
     ],
-    filter: Filter.All
+    filter: Filters.All
 }   
 
 const initStore = () =>{
@@ -25,10 +27,19 @@ const loadStore = () =>{
     throw new Error('Not implemented');
 }
 
-const getTodo = ( newFilter = Filter.All ) => {
+const getTodo = ( filter = Filter.All ) => {
     switch(filter){
-        case Filter.All:
-            return state.todos;
+        case Filters.All:
+            return [...state.todos];
+
+        case Filters.Completed:
+            return state.todos.filter(todo => todo.done);
+
+        case Filters.Completed:
+            return state.todos.filter(todo => !todo.done);
+        
+        default: 
+            throw new Error(`Option ${filter} is not valid`);
     }
 }
 
@@ -37,7 +48,8 @@ const getTodo = ( newFilter = Filter.All ) => {
  * @param {String} description 
  */
 const addTodo = (description) => {
-    throw new Error('Not implemented');
+    if(!description) throw new Error('Description is required');
+    state.todos.push(new Todo(description));
 }
 
 /**
@@ -46,23 +58,32 @@ const addTodo = (description) => {
  */
 //Seria como una aptualizacion
 const toggleTodo = (todoId) =>{
-    throw new Error('Not implemented');
+    state.todos = state.todos.map(todo => {
+        if(todo.id === todoId){
+            todo.done = !todo.done;
+        }
+        return todo;
+    });
 }
 
 const deleteTodo = (todoId) =>{
-    throw new Error('Not implemented');
+    state.todos = state.todos.filter( todo => todo.id !== todoId);
 }
 
 const deleteCompleted = () =>{
-    throw new Error('Not implemented');
+    state.todos = state.todos.filter( todo => todo.done); //todo.done este en true 
 }
 
-const setFilter = (newFilter = Filter.All) =>{
-    throw new Error('Not implemented');
+/**
+ * 
+ * @param {Filters} newFilter 
+ */
+const setFilter = (newFilter = Filters.All) =>{
+    state.filter = newFilter;
 }
 
 const getCurrentFilter = () =>{
-    throw new Error('Not implemented');
+    return state.filter;
 }
 
 export default {
