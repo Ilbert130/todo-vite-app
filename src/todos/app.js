@@ -13,4 +13,7 @@ export const app = (elementId) => {
         document.querySelector(elementId).append(app);
     })();
 
+    const v = [];
+    v.length
+
 }
