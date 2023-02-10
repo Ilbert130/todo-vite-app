@@ -27,7 +27,7 @@ const loadStore = () =>{
     throw new Error('Not implemented');
 }
 
-const getTodo = ( filter = Filter.All ) => {
+const getTodo = ( filter = Filters.All ) => {
     switch(filter){
         case Filters.All:
             return [...state.todos];
