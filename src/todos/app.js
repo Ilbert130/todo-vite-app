@@ -29,15 +29,23 @@ export const app = (elementId) => {
 
     //Referencias HTML
     const newDescriptionInput = document.querySelector(ElementIDs.NewTodoInput);
+    const todoListUL = document.querySelector(ElementIDs.TodoList);
 
-    //Listerers event
+    //Listerers event to add todo
     newDescriptionInput.addEventListener('keyup', (event)=>{
         if(event.keyCode !== 13) return;
         if(event.target.value.trim().length === 0) return;
 
         todoStore.addTodo(event.target.value);
         displayTodos();
+        event.target.value = '';
+    });
 
+    //Para marcar como completada la tarea
+    todoListUL.addEventListener('click', (event)=>{
+        const element = event.target.closest('[data-id]'); //Esto buscara el elemento padre con el atributo [data-id]
+        todoStore.toggleTodo(element.getAttribute('data-id'));
+        displayTodos();
     });
 
 }

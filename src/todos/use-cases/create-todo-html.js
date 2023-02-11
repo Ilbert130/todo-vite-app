@@ -18,7 +18,7 @@ export const createTodoHTML = (todo) => {
 
     const liElement = document.createElement('li');
     liElement.innerHTML = html;
-    liElement.setAttribute('data-id', todo.id);
+    liElement.setAttribute('data-id', todo.id); //setAttribute establece una propiedad a un elemento
 
     if(todo.done)
         liElement.classList.add('completed');

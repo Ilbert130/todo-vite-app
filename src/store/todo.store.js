@@ -56,7 +56,7 @@ const addTodo = (description) => {
  * 
  * @param {String} todoId Todo identificador
  */
-//Seria como una aptualizacion
+//Seria como una aptualizacion, para macar la tarea como completada
 const toggleTodo = (todoId) =>{
     state.todos = state.todos.map(todo => {
         if(todo.id === todoId){
