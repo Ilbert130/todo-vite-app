@@ -27,7 +27,7 @@ const initStore = () =>{
 const loadStore = () =>{
     if(!localStorage.getItem('state')) return;
 
-    const {todos = [], filter = filter.All} = JSON.parse(localStorage.getItem('state'));
+    const {todos = [], filter = filter.All} = JSON.parse(localStorage.getItem('state')); //destructuracion de objeto
     state.todos = todos;
     state.filter = filter;
 }
@@ -84,7 +84,7 @@ const deleteTodo = (todoId) =>{
 }
 
 const deleteCompleted = () =>{
-    state.todos = state.todos.filter( todo => todo.done); //todo.done este en true 
+    state.todos = state.todos.filter( todo => !todo.done); //todo.done este en true 
     saveStateToLocalStorage();
 }
 
