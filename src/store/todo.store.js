@@ -1,10 +1,10 @@
 import { Todo } from "../todos/models/todo.model";
 
 //Enumeracion
-const Filters = {
+export const Filters = {
     All: 'all',
     Completed: 'Completed',
-    Pending: 'Pending'
+    Pending: 'Pending',
 }
 
 const state = {
@@ -45,7 +45,7 @@ const getTodo = ( filter = Filters.All ) => {
         case Filters.Completed:
             return state.todos.filter(todo => todo.done);
 
-        case Filters.Completed:
+        case Filters.Pending:
             return state.todos.filter(todo => !todo.done);
         
         default: 
